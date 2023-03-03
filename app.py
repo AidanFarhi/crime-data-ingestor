@@ -25,15 +25,18 @@ def get_list_of_zip_codes():
 	return results
 
 def get_results_for_zipcodes(zipcodes):
-	url = "https://crime-data-by-zipcode-api.p.rapidapi.com/crime_data"
+	url = 'https://crime-data-by-zipcode-api.p.rapidapi.com/crime_data'
 	headers = {
 		'X-RapidAPI-Key': os.getenv('RAPID_API_KEY'),
-		"X-RapidAPI-Host": "crime-data-by-zipcode-api.p.rapidapi.com"
+		'X-RapidAPI-Host': 'crime-data-by-zipcode-api.p.rapidapi.com'
 	}
 	results = []
 	for zip in zipcodes:
 		response = requests.get(url=url, headers=headers, params={'zip': zip})
-		results.append(response.json())
+		if response is not None:
+			data = response.json()
+			if data['success'] == True:
+				results.append(response.json())
 	return results
 
 def load_results_to_s3(results):
