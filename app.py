@@ -19,7 +19,7 @@ def get_list_of_zip_codes():
 	}
 	conn = snowflake_connector.connect(**conn_params)
 	cursor = conn.cursor()
-	cursor.execute("SELECT zip FROM ZIPCODE WHERE state = 'DE'")
+	cursor.execute("SELECT zip_code FROM LOCATION WHERE state = 'DE'")
 	results = (r[0] for r in cursor.fetchall())
 	conn.close()
 	return results
