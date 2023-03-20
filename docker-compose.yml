@@ -1,7 +1,8 @@
 version: "3.9"
 services:
-  scraper:
-    build: 
+  crime-data-extractor:
+    build:
       context: .
       dockerfile: Dockerfile.dev
-    network_mode: host
+    ports:
+      - "9000:8080"

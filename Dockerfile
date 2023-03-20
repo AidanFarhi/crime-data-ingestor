@@ -1,10 +1,7 @@
-FROM python:3.10-slim
+FROM public.ecr.aws/lambda/python:3.10
 
-WORKDIR /app
+COPY requirements.txt  .
+RUN  pip3 install -r requirements.txt --target "${LAMBDA_TASK_ROOT}"
 
-ADD requirements.txt .
-ADD app.py .
-
-RUN pip install -r requirements.txt
-
-CMD [ "echo", "complete" ]
+COPY app.py ${LAMBDA_TASK_ROOT}
+CMD [ "app.main" ]
