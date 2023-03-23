@@ -25,9 +25,12 @@ def get_results_for_zipcodes(zipcodes, api_key):
 	for zip in zipcodes:
 		response = requests.get(url=url, headers=headers, params={'zip': zip})
 		if response is not None:
-			data = response.json()
-			if data['success'] == True:
-				results.append(response.json())
+			try:
+				data = response.json()
+				if data['success'] == True:
+					results.append(response.json())
+			except Exception as e:
+				print(e)
 	return results
 
 def load_results_to_s3(client, results, bucket_name):
