@@ -11,7 +11,7 @@ load_dotenv()
 
 def get_list_of_zip_codes(conn):
 	cursor = conn.cursor()
-	cursor.execute("SELECT zip_code FROM location WHERE state = 'DE'")
+	cursor.execute("SELECT zip_code FROM dim_location WHERE state = 'DE'")
 	results = (r[0] for r in cursor.fetchall())
 	conn.close()
 	return results
