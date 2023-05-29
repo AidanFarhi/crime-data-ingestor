@@ -1,4 +1,4 @@
-## This script extracts crime data from an api and loads it to an S3 bucket.
+## This script extracts crime data from an api and loads it to a S3 data lake.
 
 
 #### To run locally
